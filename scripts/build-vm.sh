@@ -49,6 +49,10 @@ cleanup() {
     if mountpoint -q "$CHROOT_DIR/dev" 2>/dev/null; then
         umount "$CHROOT_DIR/dev" || true
     fi
+    # Clean up work directory quietly
+    if [[ -n "$WORK_DIR" && -d "$WORK_DIR" ]]; then
+        rm -rf "$WORK_DIR" 2>/dev/null || true
+    fi
 }
 
 trap cleanup EXIT
@@ -63,7 +67,9 @@ main() {
     mkdir -p "$WORK_DIR"
     
     log "Creating base Debian system with debootstrap..."
-    debootstrap --arch=amd64 --variant=minbase bookworm "$CHROOT_DIR" http://deb.debian.org/debian/
+    debootstrap --arch=amd64 --variant=minbase bookworm "$CHROOT_DIR" http://deb.debian.org/debian/ > /tmp/debootstrap.log 2>&1 || {
+        error "Debootstrap failed. Check /tmp/debootstrap.log for details"
+    }
     
     log "Setting up chroot environment..."
     mount -t proc /proc "$CHROOT_DIR/proc"
@@ -99,8 +105,8 @@ EOF
     # Install packages and configure system
     chroot "$CHROOT_DIR" /bin/bash -c "
         export DEBIAN_FRONTEND=noninteractive
-        apt-get update
-        apt-get install -y --no-install-recommends linux-image-amd64 grub-pc systemd-sysv \
+        apt-get update -qq
+        apt-get install -y -qq --no-install-recommends linux-image-amd64 grub-pc systemd-sysv \
             ca-certificates curl gnupg lsb-release software-properties-common \
             wget apt-transport-https vim htop git jq unzip openssh-server \
             sudo net-tools
@@ -109,8 +115,8 @@ EOF
         wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
         echo \"deb [arch=\$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com \$(lsb_release -cs) main\" | tee /etc/apt/sources.list.d/hashicorp.list
         
-        apt-get update
-        apt-get install -y terraform
+        apt-get update -qq
+        apt-get install -y -qq terraform
         
         # Configure services  
         systemctl enable ssh
@@ -168,7 +174,7 @@ NETEOF
     mount "${LOOP_DEVICE}p1" "$WORK_DIR/mnt"
     
     log "Copying system to disk image..."
-    rsync -av --exclude=proc --exclude=sys --exclude=dev "$CHROOT_DIR/" "$WORK_DIR/mnt/"
+    rsync -a --exclude=proc --exclude=sys --exclude=dev "$CHROOT_DIR/" "$WORK_DIR/mnt/"
     
     # Create essential directories that were excluded
     mkdir -p "$WORK_DIR/mnt/proc" "$WORK_DIR/mnt/sys" "$WORK_DIR/mnt/dev"
