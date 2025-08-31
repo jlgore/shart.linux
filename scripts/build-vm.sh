@@ -37,21 +37,52 @@ check_root() {
 
 cleanup() {
     log "Cleaning up..."
-    if mountpoint -q "$CHROOT_DIR/proc" 2>/dev/null; then
-        umount "$CHROOT_DIR/proc" || true
-    fi
-    if mountpoint -q "$CHROOT_DIR/sys" 2>/dev/null; then
-        umount "$CHROOT_DIR/sys" || true
-    fi
+    
+    # Unmount in reverse order
     if mountpoint -q "$CHROOT_DIR/dev/pts" 2>/dev/null; then
         umount "$CHROOT_DIR/dev/pts" || true
     fi
     if mountpoint -q "$CHROOT_DIR/dev" 2>/dev/null; then
         umount "$CHROOT_DIR/dev" || true
     fi
-    # Clean up work directory quietly
+    if mountpoint -q "$CHROOT_DIR/sys" 2>/dev/null; then
+        umount "$CHROOT_DIR/sys" || true
+    fi
+    if mountpoint -q "$CHROOT_DIR/proc" 2>/dev/null; then
+        umount "$CHROOT_DIR/proc" || true
+    fi
+    
+    # Also check for any mounts in work directory
+    if [[ -d "$WORK_DIR/mnt" ]]; then
+        if mountpoint -q "$WORK_DIR/mnt/dev" 2>/dev/null; then
+            umount "$WORK_DIR/mnt/dev" || true
+        fi
+        if mountpoint -q "$WORK_DIR/mnt/proc" 2>/dev/null; then
+            umount "$WORK_DIR/mnt/proc" || true
+        fi
+        if mountpoint -q "$WORK_DIR/mnt/sys" 2>/dev/null; then
+            umount "$WORK_DIR/mnt/sys" || true
+        fi
+        if mountpoint -q "$WORK_DIR/mnt" 2>/dev/null; then
+            umount "$WORK_DIR/mnt" || true
+        fi
+    fi
+    
+    # Clean up any loop devices
+    for loop in $(losetup -j "$WORK_DIR/disk.raw" 2>/dev/null | cut -d: -f1); do
+        losetup -d "$loop" 2>/dev/null || true
+    done
+    
+    # Clean up work directory with proper permissions handling
     if [[ -n "$WORK_DIR" && -d "$WORK_DIR" ]]; then
-        rm -rf "$WORK_DIR" 2>/dev/null || true
+        # First try to make everything writable
+        chmod -R u+w "$WORK_DIR" 2>/dev/null || true
+        # Remove with force, suppress errors for read-only kernel files
+        rm -rf "$WORK_DIR" 2>/dev/null || {
+            # If normal removal fails, try to remove what we can
+            find "$WORK_DIR" -type f -delete 2>/dev/null || true
+            find "$WORK_DIR" -type d -delete 2>/dev/null || true
+        }
     fi
 }
 
