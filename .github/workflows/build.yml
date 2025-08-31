@@ -1,0 +1,172 @@
+name: Build shart.linux
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=sha,prefix=sha-,format=short
+          type=raw,value=latest,enable={{is_default_branch}}
+
+    - name: Build and push container image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./container/Dockerfile
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Test container image
+      run: |
+        docker run --rm --platform linux/amd64 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest terraform version
+        echo "Container test completed successfully"
+
+  build-vm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    strategy:
+      matrix:
+        format: [qcow2, vmdk]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y debootstrap squashfs-tools xorriso isolinux \
+          syslinux-efi grub-pc-bin grub-efi-amd64-bin grub-efi-ia32-bin \
+          mtools dosfstools parted qemu-utils
+
+    - name: Build VM image
+      run: |
+        sudo ./scripts/build-vm.sh ${{ matrix.format }}
+        
+    - name: Test VM image (qcow2 only)
+      if: matrix.format == 'qcow2'
+      run: |
+        # Quick boot test with timeout
+        timeout 60s qemu-system-x86_64 -m 512 -hda shart-linux.${{ matrix.format }} -nographic -serial stdio &
+        sleep 45
+        pkill -f qemu-system || true
+        echo "VM boot test completed"
+
+    - name: Calculate checksums
+      run: |
+        sha256sum shart-linux.${{ matrix.format }} > shart-linux.${{ matrix.format }}.sha256
+
+    - name: Upload VM artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: shart-linux-vm-${{ matrix.format }}
+        path: |
+          shart-linux.${{ matrix.format }}
+          shart-linux.${{ matrix.format }}.sha256
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: build-container
+    permissions:
+      contents: read
+      security-events: write
+    
+    steps:
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        format: sarif
+        output: trivy-results.sarif
+
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: trivy-results.sarif
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [build-container, build-vm]
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+      packages: read
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Download VM artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts/
+
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          artifacts/shart-linux-vm-qcow2/*
+          artifacts/shart-linux-vm-vmdk/*
+        body: |
+          # shart.linux ${{ github.ref_name }}
+          
+          A parody Debian-based Linux distribution for CTF scenarios.
+          
+          ## Container Image
+          ```bash
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+          ```
+          
+          ## VM Images
+          - `shart-linux.qcow2` - QEMU/KVM virtual machine image
+          - `shart-linux.vmdk` - VMware virtual machine image
+          
+          ## Verification
+          All artifacts include SHA256 checksums for integrity verification.
+        draft: false
+        prerelease: false
