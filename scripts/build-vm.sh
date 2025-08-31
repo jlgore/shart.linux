@@ -38,7 +38,7 @@ check_root() {
 cleanup() {
     log "Cleaning up..."
     
-    # Unmount in reverse order
+    # Just unmount filesystems - let the runner clean up directories
     if mountpoint -q "$CHROOT_DIR/dev/pts" 2>/dev/null; then
         umount "$CHROOT_DIR/dev/pts" || true
     fi
@@ -52,7 +52,7 @@ cleanup() {
         umount "$CHROOT_DIR/proc" || true
     fi
     
-    # Also check for any mounts in work directory
+    # Clean up work directory mounts
     if [[ -d "$WORK_DIR/mnt" ]]; then
         if mountpoint -q "$WORK_DIR/mnt/dev" 2>/dev/null; then
             umount "$WORK_DIR/mnt/dev" || true
@@ -68,22 +68,10 @@ cleanup() {
         fi
     fi
     
-    # Clean up any loop devices
+    # Clean up loop devices (important to prevent resource leaks)
     for loop in $(losetup -j "$WORK_DIR/disk.raw" 2>/dev/null | cut -d: -f1); do
         losetup -d "$loop" 2>/dev/null || true
     done
-    
-    # Clean up work directory with proper permissions handling
-    if [[ -n "$WORK_DIR" && -d "$WORK_DIR" ]]; then
-        # First try to make everything writable
-        chmod -R u+w "$WORK_DIR" 2>/dev/null || true
-        # Remove with force, suppress errors for read-only kernel files
-        rm -rf "$WORK_DIR" 2>/dev/null || {
-            # If normal removal fails, try to remove what we can
-            find "$WORK_DIR" -type f -delete 2>/dev/null || true
-            find "$WORK_DIR" -type d -delete 2>/dev/null || true
-        }
-    fi
 }
 
 trap cleanup EXIT
