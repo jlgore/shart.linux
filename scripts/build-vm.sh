@@ -100,7 +100,7 @@ EOF
     chroot "$CHROOT_DIR" /bin/bash -c "
         export DEBIAN_FRONTEND=noninteractive
         apt-get update
-        apt-get install -y linux-image-amd64 grub-pc systemd-sysv \
+        apt-get install -y --no-install-recommends linux-image-amd64 grub-pc systemd-sysv \
             ca-certificates curl gnupg lsb-release software-properties-common \
             wget apt-transport-https vim htop git jq unzip openssh-server \
             sudo net-tools
@@ -145,8 +145,8 @@ NETEOF
     
     log "Creating disk image..."
     
-    # Create raw disk image (2GB)
-    dd if=/dev/zero of="$WORK_DIR/disk.raw" bs=1M count=2048
+    # Create raw disk image (4GB)
+    dd if=/dev/zero of="$WORK_DIR/disk.raw" bs=1M count=4096
     
     # Create partition table and partition
     parted "$WORK_DIR/disk.raw" mklabel msdos
@@ -168,7 +168,10 @@ NETEOF
     mount "${LOOP_DEVICE}p1" "$WORK_DIR/mnt"
     
     log "Copying system to disk image..."
-    rsync -av "$CHROOT_DIR/" "$WORK_DIR/mnt/"
+    rsync -av --exclude=proc --exclude=sys --exclude=dev "$CHROOT_DIR/" "$WORK_DIR/mnt/"
+    
+    # Create essential directories that were excluded
+    mkdir -p "$WORK_DIR/mnt/proc" "$WORK_DIR/mnt/sys" "$WORK_DIR/mnt/dev"
     
     # Install GRUB
     log "Installing GRUB bootloader..."
