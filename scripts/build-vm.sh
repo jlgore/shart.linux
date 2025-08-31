@@ -151,8 +151,8 @@ NETEOF
     
     log "Creating disk image..."
     
-    # Create raw disk image (4GB)
-    dd if=/dev/zero of="$WORK_DIR/disk.raw" bs=1M count=4096
+    # Create raw disk image (3GB for faster build)
+    dd if=/dev/zero of="$WORK_DIR/disk.raw" bs=1M count=3072
     
     # Create partition table and partition
     parted "$WORK_DIR/disk.raw" mklabel msdos
@@ -166,8 +166,8 @@ NETEOF
     fi
     partprobe "$LOOP_DEVICE" || error "Failed to probe partitions"
     
-    # Format partition
-    mkfs.ext4 -F "${LOOP_DEVICE}p1"
+    # Format partition (faster with fewer inodes)
+    mkfs.ext4 -F -O ^has_journal "${LOOP_DEVICE}p1"
     
     # Mount partition and copy system
     mkdir -p "$WORK_DIR/mnt"
