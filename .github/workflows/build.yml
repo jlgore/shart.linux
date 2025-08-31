@@ -8,6 +8,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -65,6 +69,7 @@ jobs:
 
   build-vm:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
       packages: write
@@ -86,7 +91,9 @@ jobs:
 
     - name: Build VM image
       run: |
+        echo "🔨 Building VM image in ${{ matrix.format }} format..."
         sudo ./scripts/build-vm.sh ${{ matrix.format }}
+        echo "✅ VM build completed successfully"
         
     - name: Test VM image (qcow2 only)
       if: matrix.format == 'qcow2'
