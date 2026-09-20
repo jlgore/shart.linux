@@ -1,0 +1,72 @@
+﻿2025-08-31T15:55:12.1602647Z ##[group]Run actions/checkout@v4
+2025-08-31T15:55:12.1603482Z with:
+2025-08-31T15:55:12.1603874Z   repository: jlgore/shart.linux
+2025-08-31T15:55:12.1604524Z   token: ***
+2025-08-31T15:55:12.1604915Z   ssh-strict: true
+2025-08-31T15:55:12.1605297Z   ssh-user: git
+2025-08-31T15:55:12.1605686Z   persist-credentials: true
+2025-08-31T15:55:12.1606141Z   clean: true
+2025-08-31T15:55:12.1606536Z   sparse-checkout-cone-mode: true
+2025-08-31T15:55:12.1606988Z   fetch-depth: 1
+2025-08-31T15:55:12.1607365Z   fetch-tags: false
+2025-08-31T15:55:12.1607744Z   show-progress: true
+2025-08-31T15:55:12.1608132Z   lfs: false
+2025-08-31T15:55:12.1608479Z   submodules: false
+2025-08-31T15:55:12.1608878Z   set-safe-directory: true
+2025-08-31T15:55:12.1609478Z env:
+2025-08-31T15:55:12.1609833Z   REGISTRY: ghcr.io
+2025-08-31T15:55:12.1610235Z   IMAGE_NAME: jlgore/shart.linux
+2025-08-31T15:55:12.1610676Z ##[endgroup]
+2025-08-31T15:55:12.2682635Z Syncing repository: jlgore/shart.linux
+2025-08-31T15:55:12.2684340Z ##[group]Getting Git version info
+2025-08-31T15:55:12.2685110Z Working directory is '/home/runner/work/shart.linux/shart.linux'
+2025-08-31T15:55:12.2686054Z [command]/usr/bin/git version
+2025-08-31T15:55:12.2734010Z git version 2.51.0
+2025-08-31T15:55:12.2760934Z ##[endgroup]
+2025-08-31T15:55:12.2777425Z Temporarily overriding HOME='/home/runner/work/_temp/09b00043-ddbe-4aa2-8602-8f0a16cc54b5' before making global git config changes
+2025-08-31T15:55:12.2779784Z Adding repository directory to the temporary git global config as a safe directory
+2025-08-31T15:55:12.2784489Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/shart.linux/shart.linux
+2025-08-31T15:55:12.2826547Z Deleting the contents of '/home/runner/work/shart.linux/shart.linux'
+2025-08-31T15:55:12.2829645Z ##[group]Initializing the repository
+2025-08-31T15:55:12.2833941Z [command]/usr/bin/git init /home/runner/work/shart.linux/shart.linux
+2025-08-31T15:55:12.2905262Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-08-31T15:55:12.2906444Z hint: is subject to change. To configure the initial branch name to use in all
+2025-08-31T15:55:12.2907306Z hint: of your new repositories, which will suppress this warning, call:
+2025-08-31T15:55:12.2908633Z hint:
+2025-08-31T15:55:12.2909207Z hint: 	git config --global init.defaultBranch <name>
+2025-08-31T15:55:12.2909764Z hint:
+2025-08-31T15:55:12.2910284Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-08-31T15:55:12.2911472Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-08-31T15:55:12.2912175Z hint:
+2025-08-31T15:55:12.2912543Z hint: 	git branch -m <name>
+2025-08-31T15:55:12.2912957Z hint:
+2025-08-31T15:55:12.2913516Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-08-31T15:55:12.2914711Z Initialized empty Git repository in /home/runner/work/shart.linux/shart.linux/.git/
+2025-08-31T15:55:12.2919358Z [command]/usr/bin/git remote add origin https://github.com/jlgore/shart.linux
+2025-08-31T15:55:12.2954567Z ##[endgroup]
+2025-08-31T15:55:12.2955759Z ##[group]Disabling automatic garbage collection
+2025-08-31T15:55:12.2959310Z [command]/usr/bin/git config --local gc.auto 0
+2025-08-31T15:55:12.2987962Z ##[endgroup]
+2025-08-31T15:55:12.2989176Z ##[group]Setting up auth
+2025-08-31T15:55:12.2995654Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-08-31T15:55:12.3026995Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-08-31T15:55:12.3310583Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-08-31T15:55:12.3343253Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-08-31T15:55:12.3574967Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-08-31T15:55:12.3609930Z ##[endgroup]
+2025-08-31T15:55:12.3611365Z ##[group]Fetching the repository
+2025-08-31T15:55:12.3629144Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1ecd32d042dccd6632f3ab7ca3d530401d3e6c60:refs/remotes/origin/main
+2025-08-31T15:55:12.5164038Z From https://github.com/jlgore/shart.linux
+2025-08-31T15:55:12.5165628Z  * [new ref]         1ecd32d042dccd6632f3ab7ca3d530401d3e6c60 -> origin/main
+2025-08-31T15:55:12.5199736Z ##[endgroup]
+2025-08-31T15:55:12.5201430Z ##[group]Determining the checkout info
+2025-08-31T15:55:12.5203201Z ##[endgroup]
+2025-08-31T15:55:12.5207526Z [command]/usr/bin/git sparse-checkout disable
+2025-08-31T15:55:12.5250925Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-08-31T15:55:12.5280868Z ##[group]Checking out the ref
+2025-08-31T15:55:12.5284579Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-08-31T15:55:12.5330208Z Switched to a new branch 'main'
+2025-08-31T15:55:12.5333095Z branch 'main' set up to track 'origin/main'.
+2025-08-31T15:55:12.5340812Z ##[endgroup]
+2025-08-31T15:55:12.5377528Z [command]/usr/bin/git log -1 --format=%H
+2025-08-31T15:55:12.5400941Z 1ecd32d042dccd6632f3ab7ca3d530401d3e6c60

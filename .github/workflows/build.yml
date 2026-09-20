@@ -69,7 +69,7 @@ jobs:
 
   build-vm:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     permissions:
       contents: read
       packages: write
@@ -82,17 +82,29 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Setup Packer
+      uses: hashicorp/setup-packer@main
+      with:
+        version: "1.10.0"
+
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y debootstrap squashfs-tools xorriso isolinux \
-          syslinux-efi grub-pc-bin grub-efi-amd64-bin grub-efi-ia32-bin \
-          mtools dosfstools parted qemu-utils
+        sudo apt-get install -y qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils
 
-    - name: Build VM image
+    - name: Initialize Packer
+      run: |
+        cd packer
+        packer init .
+
+    - name: Build VM image with Packer
       run: |
         echo "🔨 Building VM image in ${{ matrix.format }} format..."
-        sudo ./scripts/build-vm.sh ${{ matrix.format }}
+        cd packer
+        packer build -var "output_format=${{ matrix.format }}" shart-linux.pkr.hcl
+        
+        # Move output to root directory for consistency
+        mv output-${{ matrix.format }}/shart-linux.${{ matrix.format }} ../
         echo "✅ VM build completed successfully"
         
     - name: Test VM image (qcow2 only)

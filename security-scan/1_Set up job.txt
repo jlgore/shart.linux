@@ -1,0 +1,35 @@
+﻿2025-08-31T15:55:39.1155155Z Current runner version: '2.328.0'
+2025-08-31T15:55:39.1181055Z ##[group]Runner Image Provisioner
+2025-08-31T15:55:39.1181828Z Hosted Compute Agent
+2025-08-31T15:55:39.1182499Z Version: 20250829.383
+2025-08-31T15:55:39.1183074Z Commit: 27cb235aab5b0e52e153a26cd86b4742e89dac5d
+2025-08-31T15:55:39.1183762Z Build Date: 2025-08-29T13:48:48Z
+2025-08-31T15:55:39.1184347Z ##[endgroup]
+2025-08-31T15:55:39.1184926Z ##[group]Operating System
+2025-08-31T15:55:39.1185445Z Ubuntu
+2025-08-31T15:55:39.1185962Z 24.04.3
+2025-08-31T15:55:39.1186434Z LTS
+2025-08-31T15:55:39.1186850Z ##[endgroup]
+2025-08-31T15:55:39.1187379Z ##[group]Runner Image
+2025-08-31T15:55:39.1187920Z Image: ubuntu-24.04
+2025-08-31T15:55:39.1188420Z Version: 20250824.1.0
+2025-08-31T15:55:39.1189676Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250824.1/images/ubuntu/Ubuntu2404-Readme.md
+2025-08-31T15:55:39.1191117Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250824.1
+2025-08-31T15:55:39.1192259Z ##[endgroup]
+2025-08-31T15:55:39.1193383Z ##[group]GITHUB_TOKEN Permissions
+2025-08-31T15:55:39.1195537Z Contents: read
+2025-08-31T15:55:39.1196184Z Metadata: read
+2025-08-31T15:55:39.1196690Z SecurityEvents: write
+2025-08-31T15:55:39.1197249Z ##[endgroup]
+2025-08-31T15:55:39.1199750Z Secret source: Actions
+2025-08-31T15:55:39.1200470Z Prepare workflow directory
+2025-08-31T15:55:39.1867017Z Prepare all required actions
+2025-08-31T15:55:39.1922692Z Getting action download info
+2025-08-31T15:55:39.4445565Z Download action repository 'aquasecurity/trivy-action@master' (SHA:b6643a29fecd7f34b3597bc6acb0a98b03d33ff8)
+2025-08-31T15:55:39.7512971Z Download action repository 'github/codeql-action@v3' (SHA:3c3833e0f8c1c83d449a7478aa59c036a9165498)
+2025-08-31T15:55:44.8819211Z Getting action download info
+2025-08-31T15:55:44.9958207Z Download action repository 'aquasecurity/setup-trivy@e6c2c5e321ed9123bda567646e2f96565e34abe1' (SHA:e6c2c5e321ed9123bda567646e2f96565e34abe1)
+2025-08-31T15:55:45.1541809Z Download action repository 'actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809' (SHA:0400d5f644dc74513175e3cd8d07132dd4860809)
+2025-08-31T15:55:45.2542656Z Getting action download info
+2025-08-31T15:55:45.3686506Z Download action repository 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' (SHA:08c6903cd8c0fde910a37f88322edcfb5dd907a8)
+2025-08-31T15:55:45.4455435Z Complete job name: security-scan

@@ -1,0 +1,85 @@
+﻿2025-08-31T15:55:27.1840661Z ##[group]Run docker run --rm --platform linux/amd64 ghcr.io/jlgore/shart.linux:latest terraform version
+2025-08-31T15:55:27.1841395Z [36;1mdocker run --rm --platform linux/amd64 ghcr.io/jlgore/shart.linux:latest terraform version[0m
+2025-08-31T15:55:27.1841863Z [36;1mecho "Container test completed successfully"[0m
+2025-08-31T15:55:27.1900994Z shell: /usr/bin/bash -e {0}
+2025-08-31T15:55:27.1901240Z env:
+2025-08-31T15:55:27.1901403Z   REGISTRY: ghcr.io
+2025-08-31T15:55:27.1901605Z   IMAGE_NAME: jlgore/shart.linux
+2025-08-31T15:55:27.1901835Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-31T15:55:27.1902658Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jlgore/shart.linux:main
+ghcr.io/jlgore/shart.linux:latest
+ghcr.io/jlgore/shart.linux:sha-1ecd32d
+2025-08-31T15:55:27.1904657Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-31T15:55:20.458Z
+org.opencontainers.image.description=building my own shitty distro!
+org.opencontainers.image.licenses=
+org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+org.opencontainers.image.source=https://github.com/jlgore/shart.linux
+org.opencontainers.image.title=shart.linux
+org.opencontainers.image.url=https://github.com/jlgore/shart.linux
+org.opencontainers.image.version=main
+2025-08-31T15:55:27.1908001Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-31T15:55:20.458Z
+manifest:org.opencontainers.image.description=building my own shitty distro!
+manifest:org.opencontainers.image.licenses=
+manifest:org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+manifest:org.opencontainers.image.source=https://github.com/jlgore/shart.linux
+manifest:org.opencontainers.image.title=shart.linux
+manifest:org.opencontainers.image.url=https://github.com/jlgore/shart.linux
+manifest:org.opencontainers.image.version=main
+2025-08-31T15:55:27.1913521Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jlgore/shart.linux:main","ghcr.io/jlgore/shart.linux:latest","ghcr.io/jlgore/shart.linux:sha-1ecd32d"],"labels":{"org.opencontainers.image.created":"2025-08-31T15:55:20.458Z","org.opencontainers.image.description":"building my own shitty distro!","org.opencontainers.image.licenses":"","org.opencontainers.image.revision":"1ecd32d042dccd6632f3ab7ca3d530401d3e6c60","org.opencontainers.image.source":"https://github.com/jlgore/shart.linux","org.opencontainers.image.title":"shart.linux","org.opencontainers.image.url":"https://github.com/jlgore/shart.linux","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-31T15:55:20.458Z","manifest:org.opencontainers.image.description=building my own shitty distro!","manifest:org.opencontainers.image.licenses=","manifest:org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60","manifest:org.opencontainers.image.source=https://github.com/jlgore/shart.linux","manifest:org.opencontainers.image.title=shart.linux","manifest:org.opencontainers.image.url=https://github.com/jlgore/shart.linux","manifest:org.opencontainers.image.version=main"]}
+2025-08-31T15:55:27.1917991Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake-tags.json
+2025-08-31T15:55:27.1918810Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake-labels.json
+2025-08-31T15:55:27.1919677Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake-annotations.json
+2025-08-31T15:55:27.1920501Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake.json
+2025-08-31T15:55:27.1920979Z ##[endgroup]
+2025-08-31T15:55:27.2104369Z Unable to find image 'ghcr.io/jlgore/shart.linux:latest' locally
+2025-08-31T15:55:27.4349269Z latest: Pulling from jlgore/shart.linux
+2025-08-31T15:55:27.4841446Z b1badc6e5066: Pulling fs layer
+2025-08-31T15:55:27.4842431Z b68be6b2cdf5: Pulling fs layer
+2025-08-31T15:55:27.4843091Z c34de04b6229: Pulling fs layer
+2025-08-31T15:55:27.4843326Z affbaf6a197e: Pulling fs layer
+2025-08-31T15:55:27.4843548Z 3cdd41a5686a: Pulling fs layer
+2025-08-31T15:55:27.4843765Z 531475fc1116: Pulling fs layer
+2025-08-31T15:55:27.4843984Z 0bdfee60cd43: Pulling fs layer
+2025-08-31T15:55:27.4844192Z 4f3a8a1dcedb: Pulling fs layer
+2025-08-31T15:55:27.4844397Z a221f8e7f3b4: Pulling fs layer
+2025-08-31T15:55:27.4844593Z 4f4fb700ef54: Pulling fs layer
+2025-08-31T15:55:27.4844782Z 0bdfee60cd43: Waiting
+2025-08-31T15:55:27.4844969Z a221f8e7f3b4: Waiting
+2025-08-31T15:55:27.4845136Z 4f4fb700ef54: Waiting
+2025-08-31T15:55:27.4845307Z 4f3a8a1dcedb: Waiting
+2025-08-31T15:55:27.4845478Z affbaf6a197e: Waiting
+2025-08-31T15:55:27.4845653Z 3cdd41a5686a: Waiting
+2025-08-31T15:55:27.4845817Z 531475fc1116: Waiting
+2025-08-31T15:55:27.5443101Z c34de04b6229: Verifying Checksum
+2025-08-31T15:55:27.6060103Z c34de04b6229: Download complete
+2025-08-31T15:55:27.6060539Z b1badc6e5066: Verifying Checksum
+2025-08-31T15:55:27.6060939Z b1badc6e5066: Download complete
+2025-08-31T15:55:27.6579417Z 3cdd41a5686a: Download complete
+2025-08-31T15:55:27.7060623Z 531475fc1116: Verifying Checksum
+2025-08-31T15:55:27.7062447Z 531475fc1116: Download complete
+2025-08-31T15:55:27.7640887Z 0bdfee60cd43: Download complete
+2025-08-31T15:55:27.8094877Z 4f3a8a1dcedb: Verifying Checksum
+2025-08-31T15:55:27.8099097Z 4f3a8a1dcedb: Download complete
+2025-08-31T15:55:27.8589908Z a221f8e7f3b4: Verifying Checksum
+2025-08-31T15:55:27.8590672Z a221f8e7f3b4: Download complete
+2025-08-31T15:55:27.8986192Z 4f4fb700ef54: Verifying Checksum
+2025-08-31T15:55:27.8986750Z 4f4fb700ef54: Download complete
+2025-08-31T15:55:28.0669777Z b68be6b2cdf5: Verifying Checksum
+2025-08-31T15:55:28.0670429Z b68be6b2cdf5: Download complete
+2025-08-31T15:55:28.4028563Z affbaf6a197e: Verifying Checksum
+2025-08-31T15:55:28.4029040Z affbaf6a197e: Download complete
+2025-08-31T15:55:28.7470659Z b1badc6e5066: Pull complete
+2025-08-31T15:55:31.1201602Z b68be6b2cdf5: Pull complete
+2025-08-31T15:55:31.1390138Z c34de04b6229: Pull complete
+2025-08-31T15:55:33.4716795Z affbaf6a197e: Pull complete
+2025-08-31T15:55:33.4884042Z 3cdd41a5686a: Pull complete
+2025-08-31T15:55:33.5016849Z 531475fc1116: Pull complete
+2025-08-31T15:55:33.5136474Z 0bdfee60cd43: Pull complete
+2025-08-31T15:55:33.5229286Z 4f3a8a1dcedb: Pull complete
+2025-08-31T15:55:33.5399362Z a221f8e7f3b4: Pull complete
+2025-08-31T15:55:33.5507237Z 4f4fb700ef54: Pull complete
+2025-08-31T15:55:33.5555752Z Digest: sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d
+2025-08-31T15:55:33.5570746Z Status: Downloaded newer image for ghcr.io/jlgore/shart.linux:latest
+2025-08-31T15:55:33.8037357Z Terraform v1.13.1
+2025-08-31T15:55:33.8038171Z on linux_amd64
+2025-08-31T15:55:33.8751051Z Container test completed successfully

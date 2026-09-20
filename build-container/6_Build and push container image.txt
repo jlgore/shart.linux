@@ -1,0 +1,352 @@
+﻿2025-08-31T15:55:20.5306331Z ##[group]Run docker/build-push-action@v5
+2025-08-31T15:55:20.5306624Z with:
+2025-08-31T15:55:20.5306801Z   context: .
+2025-08-31T15:55:20.5306990Z   file: ./container/Dockerfile
+2025-08-31T15:55:20.5307229Z   platforms: linux/amd64,linux/arm64
+2025-08-31T15:55:20.5307466Z   push: true
+2025-08-31T15:55:20.5307880Z   tags: ghcr.io/jlgore/shart.linux:main
+ghcr.io/jlgore/shart.linux:latest
+ghcr.io/jlgore/shart.linux:sha-1ecd32d
+2025-08-31T15:55:20.5309724Z   labels: org.opencontainers.image.created=2025-08-31T15:55:20.458Z
+org.opencontainers.image.description=building my own shitty distro!
+org.opencontainers.image.licenses=
+org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+org.opencontainers.image.source=https://github.com/jlgore/shart.linux
+org.opencontainers.image.title=shart.linux
+org.opencontainers.image.url=https://github.com/jlgore/shart.linux
+org.opencontainers.image.version=main
+2025-08-31T15:55:20.5311369Z   cache-from: type=gha
+2025-08-31T15:55:20.5311584Z   cache-to: type=gha,mode=max
+2025-08-31T15:55:20.5311829Z   load: false
+2025-08-31T15:55:20.5312008Z   no-cache: false
+2025-08-31T15:55:20.5312399Z   pull: false
+2025-08-31T15:55:20.5312774Z   github-token: ***
+2025-08-31T15:55:20.5312971Z env:
+2025-08-31T15:55:20.5313547Z   REGISTRY: ghcr.io
+2025-08-31T15:55:20.5313770Z   IMAGE_NAME: jlgore/shart.linux
+2025-08-31T15:55:20.5314018Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-31T15:55:20.5314565Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jlgore/shart.linux:main
+ghcr.io/jlgore/shart.linux:latest
+ghcr.io/jlgore/shart.linux:sha-1ecd32d
+2025-08-31T15:55:20.5316545Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-31T15:55:20.458Z
+org.opencontainers.image.description=building my own shitty distro!
+org.opencontainers.image.licenses=
+org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+org.opencontainers.image.source=https://github.com/jlgore/shart.linux
+org.opencontainers.image.title=shart.linux
+org.opencontainers.image.url=https://github.com/jlgore/shart.linux
+org.opencontainers.image.version=main
+2025-08-31T15:55:20.5319950Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-31T15:55:20.458Z
+manifest:org.opencontainers.image.description=building my own shitty distro!
+manifest:org.opencontainers.image.licenses=
+manifest:org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+manifest:org.opencontainers.image.source=https://github.com/jlgore/shart.linux
+manifest:org.opencontainers.image.title=shart.linux
+manifest:org.opencontainers.image.url=https://github.com/jlgore/shart.linux
+manifest:org.opencontainers.image.version=main
+2025-08-31T15:55:20.5325490Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jlgore/shart.linux:main","ghcr.io/jlgore/shart.linux:latest","ghcr.io/jlgore/shart.linux:sha-1ecd32d"],"labels":{"org.opencontainers.image.created":"2025-08-31T15:55:20.458Z","org.opencontainers.image.description":"building my own shitty distro!","org.opencontainers.image.licenses":"","org.opencontainers.image.revision":"1ecd32d042dccd6632f3ab7ca3d530401d3e6c60","org.opencontainers.image.source":"https://github.com/jlgore/shart.linux","org.opencontainers.image.title":"shart.linux","org.opencontainers.image.url":"https://github.com/jlgore/shart.linux","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-31T15:55:20.458Z","manifest:org.opencontainers.image.description=building my own shitty distro!","manifest:org.opencontainers.image.licenses=","manifest:org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60","manifest:org.opencontainers.image.source=https://github.com/jlgore/shart.linux","manifest:org.opencontainers.image.title=shart.linux","manifest:org.opencontainers.image.url=https://github.com/jlgore/shart.linux","manifest:org.opencontainers.image.version=main"]}
+2025-08-31T15:55:20.5329942Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake-tags.json
+2025-08-31T15:55:20.5330961Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake-labels.json
+2025-08-31T15:55:20.5331862Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake-annotations.json
+2025-08-31T15:55:20.5332821Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-DPObra/docker-metadata-action-bake.json
+2025-08-31T15:55:20.5333321Z ##[endgroup]
+2025-08-31T15:55:20.7571328Z ##[group]GitHub Actions runtime token ACs
+2025-08-31T15:55:20.7581483Z refs/heads/main: read/write
+2025-08-31T15:55:20.7583483Z ##[endgroup]
+2025-08-31T15:55:20.7584037Z ##[group]Docker info
+2025-08-31T15:55:20.7622835Z [command]/usr/bin/docker version
+2025-08-31T15:55:20.7797681Z Client: Docker Engine - Community
+2025-08-31T15:55:20.7800582Z  Version:           28.0.4
+2025-08-31T15:55:20.7800930Z  API version:       1.48
+2025-08-31T15:55:20.7801267Z  Go version:        go1.23.7
+2025-08-31T15:55:20.7801580Z  Git commit:        b8034c0
+2025-08-31T15:55:20.7801828Z  Built:             Tue Mar 25 15:07:16 2025
+2025-08-31T15:55:20.7802084Z  OS/Arch:           linux/amd64
+2025-08-31T15:55:20.7802551Z  Context:           default
+2025-08-31T15:55:20.7802688Z 
+2025-08-31T15:55:20.7802787Z Server: Docker Engine - Community
+2025-08-31T15:55:20.7803001Z  Engine:
+2025-08-31T15:55:20.7803165Z   Version:          28.0.4
+2025-08-31T15:55:20.7803384Z   API version:      1.48 (minimum version 1.24)
+2025-08-31T15:55:20.7803636Z   Go version:       go1.23.7
+2025-08-31T15:55:20.7803831Z   Git commit:       6430e49
+2025-08-31T15:55:20.7804041Z   Built:            Tue Mar 25 15:07:16 2025
+2025-08-31T15:55:20.7804284Z   OS/Arch:          linux/amd64
+2025-08-31T15:55:20.7804487Z   Experimental:     false
+2025-08-31T15:55:20.7804682Z  containerd:
+2025-08-31T15:55:20.7804839Z   Version:          1.7.27
+2025-08-31T15:55:20.7805080Z   GitCommit:        05044ec0a9a75232cad458027ca83437aae3f4da
+2025-08-31T15:55:20.7805348Z  runc:
+2025-08-31T15:55:20.7805504Z   Version:          1.2.5
+2025-08-31T15:55:20.7805697Z   GitCommit:        v1.2.5-0-g59923ef
+2025-08-31T15:55:20.7805919Z  docker-init:
+2025-08-31T15:55:20.7806081Z   Version:          0.19.0
+2025-08-31T15:55:20.7806274Z   GitCommit:        de40ad0
+2025-08-31T15:55:20.7844298Z [command]/usr/bin/docker info
+2025-08-31T15:55:20.8223103Z Client: Docker Engine - Community
+2025-08-31T15:55:20.8225926Z  Version:    28.0.4
+2025-08-31T15:55:20.8226231Z  Context:    default
+2025-08-31T15:55:20.8226519Z  Debug Mode: false
+2025-08-31T15:55:20.8226800Z  Plugins:
+2025-08-31T15:55:20.8227036Z   buildx: Docker Buildx (Docker Inc.)
+2025-08-31T15:55:20.8227314Z     Version:  v0.27.0
+2025-08-31T15:55:20.8227573Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+2025-08-31T15:55:20.8227890Z   compose: Docker Compose (Docker Inc.)
+2025-08-31T15:55:20.8228116Z     Version:  v2.38.2
+2025-08-31T15:55:20.8228359Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+2025-08-31T15:55:20.8228578Z 
+2025-08-31T15:55:20.8228648Z Server:
+2025-08-31T15:55:20.8228799Z  Containers: 1
+2025-08-31T15:55:20.8228968Z   Running: 1
+2025-08-31T15:55:20.8229120Z   Paused: 0
+2025-08-31T15:55:20.8229288Z   Stopped: 0
+2025-08-31T15:55:20.8229435Z  Images: 1
+2025-08-31T15:55:20.8229596Z  Server Version: 28.0.4
+2025-08-31T15:55:20.8229790Z  Storage Driver: overlay2
+2025-08-31T15:55:20.8229995Z   Backing Filesystem: extfs
+2025-08-31T15:55:20.8230193Z   Supports d_type: true
+2025-08-31T15:55:20.8230402Z   Using metacopy: false
+2025-08-31T15:55:20.8230589Z   Native Overlay Diff: false
+2025-08-31T15:55:20.8230781Z   userxattr: false
+2025-08-31T15:55:20.8230964Z  Logging Driver: json-file
+2025-08-31T15:55:20.8231459Z  Cgroup Driver: systemd
+2025-08-31T15:55:20.8231652Z  Cgroup Version: 2
+2025-08-31T15:55:20.8231817Z  Plugins:
+2025-08-31T15:55:20.8231970Z   Volume: local
+2025-08-31T15:55:20.8232392Z   Network: bridge host ipvlan macvlan null overlay
+2025-08-31T15:55:20.8232941Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+2025-08-31T15:55:20.8233254Z  Swarm: inactive
+2025-08-31T15:55:20.8233448Z  Runtimes: io.containerd.runc.v2 runc
+2025-08-31T15:55:20.8233680Z  Default Runtime: runc
+2025-08-31T15:55:20.8233866Z  Init Binary: docker-init
+2025-08-31T15:55:20.8234131Z  containerd version: 05044ec0a9a75232cad458027ca83437aae3f4da
+2025-08-31T15:55:20.8234422Z  runc version: v1.2.5-0-g59923ef
+2025-08-31T15:55:20.8234632Z  init version: de40ad0
+2025-08-31T15:55:20.8235123Z  Security Options:
+2025-08-31T15:55:20.8235429Z   apparmor
+2025-08-31T15:55:20.8235831Z   seccomp
+2025-08-31T15:55:20.8236117Z    Profile: builtin
+2025-08-31T15:55:20.8236402Z   cgroupns
+2025-08-31T15:55:20.8236715Z  Kernel Version: 6.11.0-1018-azure
+2025-08-31T15:55:20.8237136Z  Operating System: Ubuntu 24.04.3 LTS
+2025-08-31T15:55:20.8237545Z  OSType: linux
+2025-08-31T15:55:20.8237855Z  Architecture: x86_64
+2025-08-31T15:55:20.8238158Z  CPUs: 4
+2025-08-31T15:55:20.8238431Z  Total Memory: 15.62GiB
+2025-08-31T15:55:20.8238749Z  Name: pkrvmccyg1gnepe
+2025-08-31T15:55:20.8239101Z  ID: 1acf8ebc-766d-4eb7-bec2-c07f6b4097da
+2025-08-31T15:55:20.8239496Z  Docker Root Dir: /var/lib/docker
+2025-08-31T15:55:20.8239874Z  Debug Mode: false
+2025-08-31T15:55:20.8240189Z  Username: githubactions
+2025-08-31T15:55:20.8240496Z  Experimental: false
+2025-08-31T15:55:20.8240794Z  Insecure Registries:
+2025-08-31T15:55:20.8241100Z   ::1/128
+2025-08-31T15:55:20.8241334Z   127.0.0.0/8
+2025-08-31T15:55:20.8241614Z  Live Restore Enabled: false
+2025-08-31T15:55:20.8241849Z 
+2025-08-31T15:55:20.8242475Z ##[endgroup]
+2025-08-31T15:55:20.8243011Z ##[group]Proxy configuration
+2025-08-31T15:55:20.8245136Z No proxy configuration found
+2025-08-31T15:55:20.8245801Z ##[endgroup]
+2025-08-31T15:55:20.8854101Z ##[group]Buildx version
+2025-08-31T15:55:20.8875737Z [command]/usr/bin/docker buildx version
+2025-08-31T15:55:20.9424265Z github.com/docker/buildx v0.27.0 bac71def78b077ee6a2607119f88e291861b18ac
+2025-08-31T15:55:20.9467535Z ##[endgroup]
+2025-08-31T15:55:20.9468106Z ##[group]Builder info
+2025-08-31T15:55:21.0564350Z {
+2025-08-31T15:55:21.0564894Z   "nodes": [
+2025-08-31T15:55:21.0565225Z     {
+2025-08-31T15:55:21.0565669Z       "name": "builder-e5cdc169-2142-4498-aea5-8bd9127713d90",
+2025-08-31T15:55:21.0566256Z       "endpoint": "unix:///var/run/docker.sock",
+2025-08-31T15:55:21.0566749Z       "status": "running",
+2025-08-31T15:55:21.0567577Z       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+2025-08-31T15:55:21.0568443Z       "buildkit": "v0.23.2",
+2025-08-31T15:55:21.0568982Z       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+2025-08-31T15:55:21.0569577Z       "features": {
+2025-08-31T15:55:21.0570073Z         "Automatically load images to the Docker Engine image store": true,
+2025-08-31T15:55:21.0570684Z         "Cache export": true,
+2025-08-31T15:55:21.0571071Z         "Direct push": true,
+2025-08-31T15:55:21.0571460Z         "Docker exporter": true,
+2025-08-31T15:55:21.0571890Z         "Multi-platform build": true,
+2025-08-31T15:55:21.0572499Z         "OCI exporter": true
+2025-08-31T15:55:21.0572873Z       },
+2025-08-31T15:55:21.0573157Z       "labels": {
+2025-08-31T15:55:21.0573597Z         "org.mobyproject.buildkit.worker.executor": "oci",
+2025-08-31T15:55:21.0574265Z         "org.mobyproject.buildkit.worker.hostname": "bd4b936f8913",
+2025-08-31T15:55:21.0574919Z         "org.mobyproject.buildkit.worker.network": "host",
+2025-08-31T15:55:21.0575562Z         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+2025-08-31T15:55:21.0576298Z         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+2025-08-31T15:55:21.0577399Z         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+2025-08-31T15:55:21.0577997Z       },
+2025-08-31T15:55:21.0578279Z       "gcPolicy": [
+2025-08-31T15:55:21.0578590Z         {
+2025-08-31T15:55:21.0578878Z           "all": false,
+2025-08-31T15:55:21.0579188Z           "filter": [
+2025-08-31T15:55:21.0579772Z             "type==source.local",
+2025-08-31T15:55:21.0580170Z             "type==exec.cachemount",
+2025-08-31T15:55:21.0580620Z             "type==source.git.checkout"
+2025-08-31T15:55:21.0581014Z           ],
+2025-08-31T15:55:21.0581334Z           "keepDuration": "48h0m0s"
+2025-08-31T15:55:21.0581708Z         },
+2025-08-31T15:55:21.0581991Z         {
+2025-08-31T15:55:21.0582469Z           "all": false,
+2025-08-31T15:55:21.0582831Z           "keepDuration": "1440h0m0s"
+2025-08-31T15:55:21.0583216Z         },
+2025-08-31T15:55:21.0583478Z         {
+2025-08-31T15:55:21.0583741Z           "all": false
+2025-08-31T15:55:21.0584051Z         },
+2025-08-31T15:55:21.0584316Z         {
+2025-08-31T15:55:21.0584626Z           "all": true
+2025-08-31T15:55:21.0584932Z         }
+2025-08-31T15:55:21.0585187Z       ]
+2025-08-31T15:55:21.0585445Z     }
+2025-08-31T15:55:21.0585690Z   ],
+2025-08-31T15:55:21.0586056Z   "name": "builder-e5cdc169-2142-4498-aea5-8bd9127713d9",
+2025-08-31T15:55:21.0586578Z   "driver": "docker-container",
+2025-08-31T15:55:21.0587002Z   "lastActivity": "2025-08-31T15:55:16.000Z"
+2025-08-31T15:55:21.0587407Z }
+2025-08-31T15:55:21.0588005Z ##[endgroup]
+2025-08-31T15:55:21.2099463Z [command]/usr/bin/docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --file ./container/Dockerfile --iidfile /home/runner/work/_temp/docker-actions-toolkit-bi7CQm/build-iidfile-9325f5fead.txt --label org.opencontainers.image.created=2025-08-31T15:55:20.458Z --label org.opencontainers.image.description=building my own shitty distro! --label org.opencontainers.image.licenses= --label org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60 --label org.opencontainers.image.source=https://github.com/jlgore/shart.linux --label org.opencontainers.image.title=shart.linux --label org.opencontainers.image.url=https://github.com/jlgore/shart.linux --label org.opencontainers.image.version=main --platform linux/amd64,linux/arm64 --attest type=provenance,mode=max,builder-id=https://github.com/jlgore/shart.linux/actions/runs/17359315185 --tag ghcr.io/jlgore/shart.linux:main --tag ghcr.io/jlgore/shart.linux:latest --tag ghcr.io/jlgore/shart.linux:sha-1ecd32d --metadata-file /home/runner/work/_temp/docker-actions-toolkit-bi7CQm/build-metadata-8b5fae1173.json --push .
+2025-08-31T15:55:21.5125545Z #0 building with "builder-e5cdc169-2142-4498-aea5-8bd9127713d9" instance using docker-container driver
+2025-08-31T15:55:21.5126328Z 
+2025-08-31T15:55:21.5126485Z #1 [internal] load build definition from Dockerfile
+2025-08-31T15:55:21.5126821Z #1 transferring dockerfile: 1.68kB done
+2025-08-31T15:55:21.5127073Z #1 DONE 0.0s
+2025-08-31T15:55:21.5127191Z 
+2025-08-31T15:55:21.5127357Z #2 [auth] library/debian:pull token for registry-1.docker.io
+2025-08-31T15:55:21.5127704Z #2 DONE 0.0s
+2025-08-31T15:55:21.5127820Z 
+2025-08-31T15:55:21.5128078Z #3 [linux/amd64 internal] load metadata for docker.io/library/debian:bookworm-slim
+2025-08-31T15:55:21.5532793Z #3 ...
+2025-08-31T15:55:21.5533009Z 
+2025-08-31T15:55:21.5533404Z #4 [linux/arm64 internal] load metadata for docker.io/library/debian:bookworm-slim
+2025-08-31T15:55:21.5534060Z #4 DONE 0.2s
+2025-08-31T15:55:21.7454504Z 
+2025-08-31T15:55:21.7454830Z #5 [internal] load .dockerignore
+2025-08-31T15:55:21.7455490Z #5 transferring context: 2B done
+2025-08-31T15:55:21.7456255Z #5 DONE 0.0s
+2025-08-31T15:55:21.7456433Z 
+2025-08-31T15:55:21.7456974Z #3 [linux/amd64 internal] load metadata for docker.io/library/debian:bookworm-slim
+2025-08-31T15:55:21.7457602Z #3 DONE 0.3s
+2025-08-31T15:55:21.7457781Z 
+2025-08-31T15:55:21.7457939Z #6 [internal] load build context
+2025-08-31T15:55:21.7458513Z #6 DONE 0.0s
+2025-08-31T15:55:21.7458702Z 
+2025-08-31T15:55:21.7459902Z #7 [linux/arm64  1/10] FROM docker.io/library/debian:bookworm-slim@sha256:b1a741487078b369e78119849663d7f1a5341ef2768798f7b7406c4240f86aef
+2025-08-31T15:55:21.7461389Z #7 resolve docker.io/library/debian:bookworm-slim@sha256:b1a741487078b369e78119849663d7f1a5341ef2768798f7b7406c4240f86aef done
+2025-08-31T15:55:21.7463171Z #7 DONE 0.0s
+2025-08-31T15:55:21.7463368Z 
+2025-08-31T15:55:21.7464150Z #8 [linux/amd64  1/10] FROM docker.io/library/debian:bookworm-slim@sha256:b1a741487078b369e78119849663d7f1a5341ef2768798f7b7406c4240f86aef
+2025-08-31T15:55:21.7465255Z #8 resolve docker.io/library/debian:bookworm-slim@sha256:b1a741487078b369e78119849663d7f1a5341ef2768798f7b7406c4240f86aef done
+2025-08-31T15:55:21.7465920Z #8 DONE 0.0s
+2025-08-31T15:55:21.7466042Z 
+2025-08-31T15:55:21.7466188Z #9 importing cache manifest from gha:16520048192737339534
+2025-08-31T15:55:21.7466818Z #9 DONE 0.1s
+2025-08-31T15:55:21.9066575Z 
+2025-08-31T15:55:21.9067065Z #6 [internal] load build context
+2025-08-31T15:55:21.9067584Z #6 transferring context: 723B done
+2025-08-31T15:55:21.9068029Z #6 DONE 0.0s
+2025-08-31T15:55:21.9068289Z 
+2025-08-31T15:55:21.9068537Z #10 [linux/amd64  6/10] RUN echo "shart-linux" > /etc/hostname
+2025-08-31T15:55:21.9069021Z #10 CACHED
+2025-08-31T15:55:21.9069135Z 
+2025-08-31T15:55:21.9069727Z #11 [linux/amd64  2/10] RUN apt-get update && apt-get install -y     ca-certificates     curl     gnupg     lsb-release     software-properties-common     wget     apt-transport-https     && rm -rf /var/lib/apt/lists/*
+2025-08-31T15:55:21.9070442Z #11 CACHED
+2025-08-31T15:55:21.9070541Z 
+2025-08-31T15:55:21.9070785Z #12 [linux/amd64  9/10] RUN useradd -m -s /bin/bash ctfuser &&     echo 'ctfuser:shart123' | chpasswd
+2025-08-31T15:55:21.9071173Z #12 CACHED
+2025-08-31T15:55:21.9071280Z 
+2025-08-31T15:55:21.9071618Z #13 [linux/amd64  4/10] RUN apt-get update && apt-get install -y     terraform     vim     htop     git     jq     unzip     && rm -rf /var/lib/apt/lists/*
+2025-08-31T15:55:21.9072093Z #13 CACHED
+2025-08-31T15:55:21.9072395Z 
+2025-08-31T15:55:21.9074014Z #14 [linux/amd64  3/10] RUN wget -O- https://apt.releases.hashicorp.com/gpg |     gpg --dearmor |     tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null &&     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" |     tee /etc/apt/sources.list.d/hashicorp.list
+2025-08-31T15:55:21.9076066Z #14 CACHED
+2025-08-31T15:55:21.9076235Z 
+2025-08-31T15:55:21.9076436Z #15 [linux/amd64  5/10] COPY assets/motd.txt /etc/motd
+2025-08-31T15:55:21.9076871Z #15 CACHED
+2025-08-31T15:55:21.9077022Z 
+2025-08-31T15:55:21.9077259Z #16 [linux/amd64  8/10] RUN echo 'cat /etc/motd' >> /etc/bash.bashrc
+2025-08-31T15:55:21.9077744Z #16 CACHED
+2025-08-31T15:55:21.9077896Z 
+2025-08-31T15:55:21.9078231Z #17 [linux/amd64  7/10] RUN echo 'export PS1="[\u@shart-linux \W]$ "' >> /etc/bash.bashrc
+2025-08-31T15:55:21.9078800Z #17 CACHED
+2025-08-31T15:55:21.9078964Z 
+2025-08-31T15:55:21.9080818Z #18 [linux/arm64  3/10] RUN wget -O- https://apt.releases.hashicorp.com/gpg |     gpg --dearmor |     tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null &&     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" |     tee /etc/apt/sources.list.d/hashicorp.list
+2025-08-31T15:55:21.9083150Z #18 CACHED
+2025-08-31T15:55:21.9083332Z 
+2025-08-31T15:55:21.9083679Z #19 [linux/arm64  7/10] RUN echo 'export PS1="[\u@shart-linux \W]$ "' >> /etc/bash.bashrc
+2025-08-31T15:55:21.9084287Z #19 CACHED
+2025-08-31T15:55:21.9084448Z 
+2025-08-31T15:55:21.9085035Z #20 [linux/arm64  4/10] RUN apt-get update && apt-get install -y     terraform     vim     htop     git     jq     unzip     && rm -rf /var/lib/apt/lists/*
+2025-08-31T15:55:21.9085860Z #20 CACHED
+2025-08-31T15:55:21.9086074Z 
+2025-08-31T15:55:21.9086876Z #21 [linux/arm64  2/10] RUN apt-get update && apt-get install -y     ca-certificates     curl     gnupg     lsb-release     software-properties-common     wget     apt-transport-https     && rm -rf /var/lib/apt/lists/*
+2025-08-31T15:55:21.9087984Z #21 CACHED
+2025-08-31T15:55:21.9088095Z 
+2025-08-31T15:55:21.9088220Z #22 [linux/arm64  5/10] COPY assets/motd.txt /etc/motd
+2025-08-31T15:55:21.9088642Z #22 CACHED
+2025-08-31T15:55:21.9088744Z 
+2025-08-31T15:55:21.9088882Z #23 [linux/arm64  6/10] RUN echo "shart-linux" > /etc/hostname
+2025-08-31T15:55:21.9089170Z #23 CACHED
+2025-08-31T15:55:21.9089266Z 
+2025-08-31T15:55:21.9089499Z #24 [linux/arm64  9/10] RUN useradd -m -s /bin/bash ctfuser &&     echo 'ctfuser:shart123' | chpasswd
+2025-08-31T15:55:21.9089880Z #24 CACHED
+2025-08-31T15:55:21.9089974Z 
+2025-08-31T15:55:21.9090121Z #25 [linux/arm64  8/10] RUN echo 'cat /etc/motd' >> /etc/bash.bashrc
+2025-08-31T15:55:21.9090422Z #25 CACHED
+2025-08-31T15:55:21.9090519Z 
+2025-08-31T15:55:21.9090616Z #26 [linux/amd64 10/10] WORKDIR /home/ctfuser
+2025-08-31T15:55:21.9134047Z #26 CACHED
+2025-08-31T15:55:21.9134280Z 
+2025-08-31T15:55:21.9134472Z #27 [linux/arm64 10/10] WORKDIR /home/ctfuser
+2025-08-31T15:55:22.1386942Z #27 CACHED
+2025-08-31T15:55:22.1387261Z 
+2025-08-31T15:55:22.1387570Z #28 [auth] jlgore/shart.linux:pull,push token for ghcr.io
+2025-08-31T15:55:22.1388211Z #28 DONE 0.0s
+2025-08-31T15:55:22.1388497Z 
+2025-08-31T15:55:22.1388670Z #29 exporting to image
+2025-08-31T15:55:22.1389043Z #29 exporting layers done
+2025-08-31T15:55:22.1389609Z #29 exporting manifest sha256:bee9ddcbd1a22e334adc23257da6cc5fba4bef3174c6769d4a5272afcc4d0c17 done
+2025-08-31T15:55:22.1390444Z #29 exporting config sha256:fcdfe99108a05af2ea199ede1025f1cabd88200bb91d767654cc117865473148 done
+2025-08-31T15:55:22.1391312Z #29 exporting attestation manifest sha256:8717bb84abc2da041aad202ce07f9daff9a5da6ab69d73891d95267e8f674082 done
+2025-08-31T15:55:22.1392130Z #29 exporting manifest sha256:983b1ef586584447f6bb4cf605a8c322892f3d8de7b3824c896030eb3bf038fc done
+2025-08-31T15:55:22.1392990Z #29 exporting config sha256:233a150fbf36b108fe2ddd417ae10116c343a37870e83995d88301b94414f3d4 done
+2025-08-31T15:55:22.1393694Z #29 exporting attestation manifest sha256:67e4205e1b612a287e8326124d6fdeb0793b603adc9b40b6ee7c89af0a24c26a done
+2025-08-31T15:55:22.1394413Z #29 exporting manifest list sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d done
+2025-08-31T15:55:22.1394896Z #29 pushing layers
+2025-08-31T15:55:23.9685838Z #29 pushing layers 2.0s done
+2025-08-31T15:55:23.9687063Z #29 pushing manifest for ghcr.io/jlgore/shart.linux:main@sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d
+2025-08-31T15:55:25.5652416Z #29 pushing manifest for ghcr.io/jlgore/shart.linux:main@sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d 1.6s done
+2025-08-31T15:55:25.6887017Z #29 pushing layers 0.1s done
+2025-08-31T15:55:25.6888415Z #29 pushing manifest for ghcr.io/jlgore/shart.linux:latest@sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d
+2025-08-31T15:55:26.0965628Z #29 pushing manifest for ghcr.io/jlgore/shart.linux:latest@sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d 0.4s done
+2025-08-31T15:55:26.2136636Z #29 pushing layers 0.1s done
+2025-08-31T15:55:26.2138098Z #29 pushing manifest for ghcr.io/jlgore/shart.linux:sha-1ecd32d@sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d
+2025-08-31T15:55:26.5533658Z #29 pushing manifest for ghcr.io/jlgore/shart.linux:sha-1ecd32d@sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d 0.3s done
+2025-08-31T15:55:26.5534748Z #29 DONE 4.6s
+2025-08-31T15:55:26.5534935Z 
+2025-08-31T15:55:26.5535090Z #30 exporting to GitHub Actions Cache
+2025-08-31T15:55:26.5535508Z #30 preparing build cache for export
+2025-08-31T15:55:27.1382783Z #30 preparing build cache for export 0.6s done
+2025-08-31T15:55:27.1383374Z #30 DONE 0.6s
+2025-08-31T15:55:27.1657247Z 
+2025-08-31T15:55:27.1657681Z #31 resolving provenance for metadata file
+2025-08-31T15:55:27.1658095Z #31 DONE 0.0s
+2025-08-31T15:55:27.1724830Z ##[group]ImageID
+2025-08-31T15:55:27.1725380Z sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d
+2025-08-31T15:55:27.1726745Z ##[endgroup]
+2025-08-31T15:55:27.1727213Z ##[group]Digest
+2025-08-31T15:55:27.1727691Z sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d
+2025-08-31T15:55:27.1728701Z ##[endgroup]
+2025-08-31T15:55:27.1729148Z ##[group]Metadata
+2025-08-31T15:55:27.1729447Z {
+2025-08-31T15:55:27.1730253Z   "buildx.build.ref": "builder-e5cdc169-2142-4498-aea5-8bd9127713d9/builder-e5cdc169-2142-4498-aea5-8bd9127713d90/6flx5t0uog8wdl37s4ro1t9ew",
+2025-08-31T15:55:27.1731210Z   "containerimage.descriptor": {
+2025-08-31T15:55:27.1731683Z     "mediaType": "application/vnd.oci.image.index.v1+json",
+2025-08-31T15:55:27.1732623Z     "digest": "sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d",
+2025-08-31T15:55:27.1733242Z     "size": 1609
+2025-08-31T15:55:27.1733497Z   },
+2025-08-31T15:55:27.1733860Z   "containerimage.digest": "sha256:77254f0619eee4ddb89e5f6f0deffdf2adb5a2df77d94837a44d56424ff5819d",
+2025-08-31T15:55:27.1734566Z   "image.name": "ghcr.io/jlgore/shart.linux:main,ghcr.io/jlgore/shart.linux:latest,ghcr.io/jlgore/shart.linux:sha-1ecd32d"
+2025-08-31T15:55:27.1735025Z }
+2025-08-31T15:55:27.1735308Z ##[endgroup]

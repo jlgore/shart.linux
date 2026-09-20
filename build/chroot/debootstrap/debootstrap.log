@@ -1,0 +1,10 @@
+2025-08-31 16:19:27 URL:http://deb.debian.org/debian/dists/bookworm/InRelease [151074/151074] -> "/home/jg/git/shart.linux/build/chroot/var/lib/apt/lists/partial/deb.debian.org_debian_dists_bookworm_InRelease" [1]
+gpgv: Signature made Sat Aug  9 03:53:52 2025 CDT
+gpgv:                using RSA key A7236886F3CCCAAD148A27F80E98404D386FA1D9
+gpgv: Good signature from "Debian Archive Automatic Signing Key (11/bullseye) <ftpmaster@debian.org>"
+gpgv: Signature made Sat Aug  9 03:53:52 2025 CDT
+gpgv:                using RSA key 4CB50190207B4758A3F73A796ED0E7B82643E131
+gpgv: Good signature from "Debian Archive Automatic Signing Key (12/bookworm) <ftpmaster@debian.org>"
+gpgv: Signature made Sat Aug  9 04:25:33 2025 CDT
+gpgv:                using EDDSA key 4D64FEC119C2029067D6E791F8D2585B8783D481
+gpgv: Good signature from "Debian Stable Release Key (12/bookworm) <debian-release@lists.debian.org>"

@@ -2,8 +2,9 @@
 
 set -e
 
-# shart.linux VM Build Script
+# shart.linux VM Build Script (Container-Friendly Version)
 # Creates bootable VM images in qcow2 or vmdk format
+# Optimized for running inside Docker containers (like act)
 
 OUTPUT_FORMAT="${1:-qcow2}"
 WORK_DIR="$(pwd)/build"
@@ -38,7 +39,7 @@ check_root() {
 cleanup() {
     log "Cleaning up..."
     
-    # Just unmount filesystems - let the runner clean up directories
+    # Unmount filesystems
     if mountpoint -q "$CHROOT_DIR/dev/pts" 2>/dev/null; then
         umount "$CHROOT_DIR/dev/pts" || true
     fi
@@ -68,7 +69,7 @@ cleanup() {
         fi
     fi
     
-    # Clean up loop devices (important to prevent resource leaks)
+    # Clean up loop devices
     for loop in $(losetup -j "$WORK_DIR/disk.raw" 2>/dev/null | cut -d: -f1); do
         losetup -d "$loop" 2>/dev/null || true
     done
@@ -77,9 +78,14 @@ cleanup() {
 trap cleanup EXIT
 
 main() {
-    log "Starting shart.linux VM build (format: $OUTPUT_FORMAT)"
+    log "Starting shart.linux VM build (format: $OUTPUT_FORMAT) - Container Mode"
     
     check_root
+    
+    # Install additional tools needed for containers
+    log "Installing container-specific tools..."
+    apt-get update -qq
+    apt-get install -y -qq --no-install-recommends kpartx udev debian-archive-keyring || warn "Some tools may not be available in container"
     
     # Clean previous builds
     rm -rf "$WORK_DIR"
@@ -121,9 +127,18 @@ deb http://deb.debian.org/debian/ bookworm-updates main
 deb-src http://deb.debian.org/debian/ bookworm-updates main
 EOF
 
-    # Install packages and configure system
+    # Install packages and configure system (with container-friendly settings)
     chroot "$CHROOT_DIR" /bin/bash -c "
         export DEBIAN_FRONTEND=noninteractive
+        export RUNLEVEL=1
+        
+        # Prevent services from starting during package installation
+        cat > /usr/sbin/policy-rc.d << POLICY
+#!/bin/sh
+exit 101
+POLICY
+        chmod +x /usr/sbin/policy-rc.d
+        
         apt-get update -qq
         apt-get install -y -qq --no-install-recommends linux-image-amd64 grub-pc systemd-sysv \
             ca-certificates curl gnupg lsb-release software-properties-common \
@@ -137,7 +152,7 @@ EOF
         apt-get update -qq
         apt-get install -y -qq terraform
         
-        # Configure services (enable without requiring a running systemd)
+        # Configure services (will be enabled but not started due to policy-rc.d)
         systemctl enable ssh || true
         systemctl enable systemd-networkd || true
         systemctl enable systemd-resolved || true
@@ -163,6 +178,9 @@ NETEOF
         # Set root password
         echo 'root:shart123' | chpasswd
         
+        # Remove policy-rc.d
+        rm -f /usr/sbin/policy-rc.d
+        
         # Clean up
         apt-get clean
         rm -rf /var/lib/apt/lists/*
@@ -170,27 +188,51 @@ NETEOF
     
     log "Creating disk image..."
     
-    # Create raw disk image (3GB for faster build)
+    # Create raw disk image (3GB)
     dd if=/dev/zero of="$WORK_DIR/disk.raw" bs=1M count=3072
     
-    # Create partition table and partition
-    parted "$WORK_DIR/disk.raw" mklabel msdos
-    parted "$WORK_DIR/disk.raw" mkpart primary ext4 1MiB 100%
-    parted "$WORK_DIR/disk.raw" set 1 boot on
+    # Create partition table and partition using sfdisk (more container-friendly)
+    sfdisk "$WORK_DIR/disk.raw" << SFDISK_EOF
+label: dos
+label-id: 0x12345678
+device: $WORK_DIR/disk.raw
+unit: sectors
+
+$WORK_DIR/disk.raw1 : start=2048, type=83, bootable
+SFDISK_EOF
     
-    # Set up loop device
-    LOOP_DEVICE=$(losetup --find --show "$WORK_DIR/disk.raw")
+    # Set up loop device with partition support
+    LOOP_DEVICE=$(losetup --find --show --partscan "$WORK_DIR/disk.raw")
     if [[ -z "$LOOP_DEVICE" ]]; then
         error "Failed to create loop device"
     fi
-    partprobe "$LOOP_DEVICE" || error "Failed to probe partitions"
+    
+    # Give the kernel time to create partition devices
+    sleep 2
+    
+    # Check if partition device exists, create manually if needed
+    PART_DEVICE="${LOOP_DEVICE}p1"
+    if [[ ! -b "$PART_DEVICE" ]]; then
+        warn "Partition device not found, trying kpartx..."
+        kpartx -av "$LOOP_DEVICE" || true
+        sleep 1
+        # kpartx creates devices in /dev/mapper/
+        MAPPER_DEVICE=$(kpartx -l "$LOOP_DEVICE" | head -1 | awk '{print "/dev/mapper/" $1}')
+        if [[ -b "$MAPPER_DEVICE" ]]; then
+            PART_DEVICE="$MAPPER_DEVICE"
+        else
+            error "Could not create partition device"
+        fi
+    fi
+    
+    log "Using partition device: $PART_DEVICE"
     
     # Format partition (faster with fewer inodes)
-    mkfs.ext4 -F -O ^has_journal "${LOOP_DEVICE}p1"
+    mkfs.ext4 -F -O ^has_journal "$PART_DEVICE"
     
     # Mount partition and copy system
     mkdir -p "$WORK_DIR/mnt"
-    mount "${LOOP_DEVICE}p1" "$WORK_DIR/mnt"
+    mount "$PART_DEVICE" "$WORK_DIR/mnt"
     
     log "Copying system to disk image..."
     rsync -a --exclude=proc --exclude=sys --exclude=dev "$CHROOT_DIR/" "$WORK_DIR/mnt/"
@@ -204,10 +246,10 @@ NETEOF
     mount -o bind /proc "$WORK_DIR/mnt/proc"
     mount -o bind /sys "$WORK_DIR/mnt/sys"
     
-    chroot "$WORK_DIR/mnt" grub-install --target=i386-pc --no-floppy "$LOOP_DEVICE"
+    chroot "$WORK_DIR/mnt" grub-install --target=i386-pc --no-floppy --force "$LOOP_DEVICE"
     chroot "$WORK_DIR/mnt" update-grub
     
-    # Configure GRUB defaults for better compatibility
+    # Configure GRUB defaults
     cat >> "$WORK_DIR/mnt/etc/default/grub" << GRUBEOF
 GRUB_TIMEOUT=3
 GRUB_CMDLINE_LINUX_DEFAULT="quiet"
@@ -216,7 +258,7 @@ GRUBEOF
     chroot "$WORK_DIR/mnt" update-grub
     
     # Configure fstab
-    UUID=$(blkid -s UUID -o value "${LOOP_DEVICE}p1")
+    UUID=$(blkid -s UUID -o value "$PART_DEVICE")
     echo "UUID=$UUID / ext4 defaults 0 1" > "$WORK_DIR/mnt/etc/fstab"
     
     # Cleanup mounts
@@ -225,13 +267,18 @@ GRUBEOF
     umount "$WORK_DIR/mnt/sys" || true
     umount "$WORK_DIR/mnt"
     
+    # Clean up partition mapping if we used kpartx
+    if [[ "$PART_DEVICE" == /dev/mapper/* ]]; then
+        kpartx -dv "$LOOP_DEVICE" || true
+    fi
+    
     # Detach loop device
     losetup -d "$LOOP_DEVICE"
     
     log "Converting to $OUTPUT_FORMAT format..."
     case "$OUTPUT_FORMAT" in
         qcow2)
-            qemu-img convert -f raw -O qcow2 "$WORK_DIR/disk.raw" "$IMAGE_NAME"
+            qemu-img convert -f raw -O qcow2 -c "$WORK_DIR/disk.raw" "$IMAGE_NAME"
             ;;
         vmdk)
             qemu-img convert -f raw -O vmdk "$WORK_DIR/disk.raw" "$IMAGE_NAME"

@@ -1,0 +1,133 @@
+packer {
+  required_plugins {
+    qemu = {
+      version = "~> 1"
+      source  = "github.com/hashicorp/qemu"
+    }
+  }
+}
+
+variable "output_format" {
+  type        = string
+  description = "Output format for the VM image"
+  default     = "qcow2"
+  validation {
+    condition     = contains(["qcow2", "vmdk"], var.output_format)
+    error_message = "Output format must be either 'qcow2' or 'vmdk'."
+  }
+}
+
+# Use a pre-built Debian cloud image instead of installing from scratch
+source "qemu" "debian" {
+  iso_url      = "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2"
+  iso_checksum = "file:https://cloud.debian.org/images/cloud/bookworm/latest/SHA512SUMS"
+  
+  output_directory = "output-${var.output_format}"
+  vm_name         = "shart-linux.${var.output_format}"
+  
+  disk_image      = true
+  disk_size       = "5G"
+  memory          = "2048"
+  cpus            = 2
+  
+  accelerator     = "tcg"
+  format          = var.output_format
+  
+  headless        = true
+  vnc_bind_address = "0.0.0.0"
+  
+  net_device      = "virtio-net"
+  
+  ssh_username = "root"
+  ssh_password = "root"
+  ssh_timeout = "10m"
+  ssh_pty = true
+  
+  boot_wait = "10s"
+  boot_command = [
+    "<enter>"
+  ]
+  
+  shutdown_command = "shutdown -P now"
+}
+
+build {
+  sources = ["source.qemu.debian"]
+  
+  # Enable root login and set password
+  provisioner "shell" {
+    inline = [
+      "echo 'root:shart123' | chpasswd",
+      "sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config",
+      "systemctl restart ssh"
+    ]
+  }
+  
+  # Install basic packages
+  provisioner "shell" {
+    inline = [
+      "export DEBIAN_FRONTEND=noninteractive",
+      "apt-get update -qq",
+      "apt-get upgrade -y -qq",
+      "apt-get install -y -qq --no-install-recommends ca-certificates curl gnupg lsb-release software-properties-common wget apt-transport-https vim htop git jq unzip net-tools sudo"
+    ]
+  }
+  
+  # Install Terraform
+  provisioner "shell" {
+    inline = [
+      "wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null",
+      "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main\" | tee /etc/apt/sources.list.d/hashicorp.list",
+      "apt-get update -qq",
+      "apt-get install -y -qq terraform"
+    ]
+  }
+  
+  # Configure system
+  provisioner "shell" {
+    inline = [
+      "echo 'shart-linux' > /etc/hostname",
+      "echo '127.0.0.1   localhost' > /etc/hosts",
+      "echo '127.0.1.1   shart-linux' >> /etc/hosts",
+      "useradd -m -s /bin/bash ctfuser",
+      "echo 'ctfuser:shart123' | chpasswd",
+      "usermod -aG sudo ctfuser",
+      "systemctl enable ssh"
+    ]
+  }
+  
+  # Copy MOTD
+  provisioner "file" {
+    source      = "../assets/motd.txt"
+    destination = "/etc/motd"
+  }
+  
+  # Final configuration
+  provisioner "shell" {
+    inline = [
+      "echo 'cat /etc/motd' >> /etc/bash.bashrc",
+      "echo 'export PS1=\"[\\u@shart-linux \\W]$ \"' >> /etc/bash.bashrc"
+    ]
+  }
+  
+  # Cleanup
+  provisioner "shell" {
+    inline = [
+      "apt-get clean",
+      "rm -rf /var/lib/apt/lists/*",
+      "rm -rf /tmp/*",
+      "rm -rf /var/tmp/*",
+      "find /var/log -type f -exec rm -f {} \\;",
+      "history -c && history -w",
+      "rm -f /root/.bash_history",
+      "rm -f /home/ctfuser/.bash_history || true"
+    ]
+  }
+  
+  post-processor "shell-local" {
+    inline = [
+      "echo 'VM image built successfully: output-${var.output_format}/shart-linux.${var.output_format}'",
+      "sha256sum output-${var.output_format}/shart-linux.${var.output_format} > shart-linux.${var.output_format}.sha256"
+    ]
+  }
+}

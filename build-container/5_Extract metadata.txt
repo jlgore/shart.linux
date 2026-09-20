@@ -1,0 +1,155 @@
+﻿2025-08-31T15:55:19.9609036Z ##[group]Run docker/metadata-action@v5
+2025-08-31T15:55:19.9609308Z with:
+2025-08-31T15:55:19.9609493Z   images: ghcr.io/jlgore/shart.linux
+2025-08-31T15:55:19.9610165Z   tags: type=ref,event=branch
+type=ref,event=pr
+type=semver,pattern={{version}}
+type=semver,pattern={{major}}.{{minor}}
+type=sha,prefix=sha-,format=short
+type=raw,value=latest,enable={{is_default_branch}}
+
+2025-08-31T15:55:19.9610834Z   context: workflow
+2025-08-31T15:55:19.9611142Z   github-token: ***
+2025-08-31T15:55:19.9611324Z env:
+2025-08-31T15:55:19.9611486Z   REGISTRY: ghcr.io
+2025-08-31T15:55:19.9611674Z   IMAGE_NAME: jlgore/shart.linux
+2025-08-31T15:55:19.9611882Z ##[endgroup]
+2025-08-31T15:55:20.4549625Z ##[group]Context info
+2025-08-31T15:55:20.4550044Z eventName: push
+2025-08-31T15:55:20.4550387Z sha: 1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+2025-08-31T15:55:20.4550820Z ref: refs/heads/main
+2025-08-31T15:55:20.4551134Z workflow: Build shart.linux
+2025-08-31T15:55:20.4551466Z action: meta
+2025-08-31T15:55:20.4551759Z actor: jlgore
+2025-08-31T15:55:20.4552136Z runNumber: 3
+2025-08-31T15:55:20.4552652Z runId: 17359315185
+2025-08-31T15:55:20.4553149Z commitDate: Sun Aug 31 2025 15:55:03 GMT+0000 (Coordinated Universal Time)
+2025-08-31T15:55:20.4554019Z ##[endgroup]
+2025-08-31T15:55:20.4561155Z ##[group]Processing images input
+2025-08-31T15:55:20.4561642Z name=ghcr.io/jlgore/shart.linux,enable=true
+2025-08-31T15:55:20.4562553Z ##[endgroup]
+2025-08-31T15:55:20.4582983Z ##[group]Processing tags input
+2025-08-31T15:55:20.4585017Z type=semver,pattern={{version}},value=,match=,enable=true,priority=900
+2025-08-31T15:55:20.4586660Z type=semver,pattern={{major}}.{{minor}},value=,match=,enable=true,priority=900
+2025-08-31T15:55:20.4587728Z type=ref,event=branch,enable=true,priority=600
+2025-08-31T15:55:20.4590319Z type=ref,event=pr,prefix=pr-,enable=true,priority=600
+2025-08-31T15:55:20.4591239Z type=raw,value=latest,enable={{is_default_branch}},priority=200
+2025-08-31T15:55:20.4592710Z type=sha,prefix=sha-,format=short,enable=true,priority=100
+2025-08-31T15:55:20.4594969Z ##[endgroup]
+2025-08-31T15:55:20.4595834Z ##[group]Processing flavor input
+2025-08-31T15:55:20.4596486Z latest=auto
+2025-08-31T15:55:20.4596964Z prefix=
+2025-08-31T15:55:20.4597447Z prefixLatest=false
+2025-08-31T15:55:20.4597919Z suffix=
+2025-08-31T15:55:20.4598377Z suffixLatest=false
+2025-08-31T15:55:20.4599156Z ##[endgroup]
+2025-08-31T15:55:20.4667598Z ##[group]Docker image version
+2025-08-31T15:55:20.4667975Z main
+2025-08-31T15:55:20.4668464Z ##[endgroup]
+2025-08-31T15:55:20.4675616Z ##[group]Docker tags
+2025-08-31T15:55:20.4676191Z ghcr.io/jlgore/shart.linux:main
+2025-08-31T15:55:20.4676779Z ghcr.io/jlgore/shart.linux:latest
+2025-08-31T15:55:20.4677398Z ghcr.io/jlgore/shart.linux:sha-1ecd32d
+2025-08-31T15:55:20.4678247Z ##[endgroup]
+2025-08-31T15:55:20.4754309Z ##[group]Docker labels
+2025-08-31T15:55:20.4755102Z org.opencontainers.image.created=2025-08-31T15:55:20.458Z
+2025-08-31T15:55:20.4755921Z org.opencontainers.image.description=building my own shitty distro!
+2025-08-31T15:55:20.4756617Z org.opencontainers.image.licenses=
+2025-08-31T15:55:20.4757291Z org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+2025-08-31T15:55:20.4758185Z org.opencontainers.image.source=https://github.com/jlgore/shart.linux
+2025-08-31T15:55:20.4758896Z org.opencontainers.image.title=shart.linux
+2025-08-31T15:55:20.4759567Z org.opencontainers.image.url=https://github.com/jlgore/shart.linux
+2025-08-31T15:55:20.4760270Z org.opencontainers.image.version=main
+2025-08-31T15:55:20.4761001Z ##[endgroup]
+2025-08-31T15:55:20.4761656Z ##[group]Annotations
+2025-08-31T15:55:20.4762396Z manifest:org.opencontainers.image.created=2025-08-31T15:55:20.458Z
+2025-08-31T15:55:20.4763239Z manifest:org.opencontainers.image.description=building my own shitty distro!
+2025-08-31T15:55:20.4763977Z manifest:org.opencontainers.image.licenses=
+2025-08-31T15:55:20.4764726Z manifest:org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60
+2025-08-31T15:55:20.4765717Z manifest:org.opencontainers.image.source=https://github.com/jlgore/shart.linux
+2025-08-31T15:55:20.4766843Z manifest:org.opencontainers.image.title=shart.linux
+2025-08-31T15:55:20.4767611Z manifest:org.opencontainers.image.url=https://github.com/jlgore/shart.linux
+2025-08-31T15:55:20.4768364Z manifest:org.opencontainers.image.version=main
+2025-08-31T15:55:20.4769148Z ##[endgroup]
+2025-08-31T15:55:20.4769731Z ##[group]JSON output
+2025-08-31T15:55:20.4770057Z {
+2025-08-31T15:55:20.4770311Z   "tags": [
+2025-08-31T15:55:20.4770624Z     "ghcr.io/jlgore/shart.linux:main",
+2025-08-31T15:55:20.4771088Z     "ghcr.io/jlgore/shart.linux:latest",
+2025-08-31T15:55:20.4771542Z     "ghcr.io/jlgore/shart.linux:sha-1ecd32d"
+2025-08-31T15:55:20.4771936Z   ],
+2025-08-31T15:55:20.4772464Z   "labels": {
+2025-08-31T15:55:20.4773078Z     "org.opencontainers.image.created": "2025-08-31T15:55:20.458Z",
+2025-08-31T15:55:20.4773902Z     "org.opencontainers.image.description": "building my own shitty distro!",
+2025-08-31T15:55:20.4774628Z     "org.opencontainers.image.licenses": "",
+2025-08-31T15:55:20.4775363Z     "org.opencontainers.image.revision": "1ecd32d042dccd6632f3ab7ca3d530401d3e6c60",
+2025-08-31T15:55:20.4776318Z     "org.opencontainers.image.source": "https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4777057Z     "org.opencontainers.image.title": "shart.linux",
+2025-08-31T15:55:20.4777749Z     "org.opencontainers.image.url": "https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4778634Z     "org.opencontainers.image.version": "main"
+2025-08-31T15:55:20.4779366Z   },
+2025-08-31T15:55:20.4779646Z   "annotations": [
+2025-08-31T15:55:20.4780178Z     "manifest:org.opencontainers.image.created=2025-08-31T15:55:20.458Z",
+2025-08-31T15:55:20.4781041Z     "manifest:org.opencontainers.image.description=building my own shitty distro!",
+2025-08-31T15:55:20.4781809Z     "manifest:org.opencontainers.image.licenses=",
+2025-08-31T15:55:20.4782765Z     "manifest:org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60",
+2025-08-31T15:55:20.4783791Z     "manifest:org.opencontainers.image.source=https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4784637Z     "manifest:org.opencontainers.image.title=shart.linux",
+2025-08-31T15:55:20.4785430Z     "manifest:org.opencontainers.image.url=https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4786211Z     "manifest:org.opencontainers.image.version=main"
+2025-08-31T15:55:20.4786675Z   ]
+2025-08-31T15:55:20.4786949Z }
+2025-08-31T15:55:20.4787469Z ##[endgroup]
+2025-08-31T15:55:20.4788083Z ##[group]Bake file definition (tags)
+2025-08-31T15:55:20.4788494Z {
+2025-08-31T15:55:20.4788744Z   "target": {
+2025-08-31T15:55:20.4789068Z     "docker-metadata-action": {
+2025-08-31T15:55:20.4789451Z       "tags": [
+2025-08-31T15:55:20.4789786Z         "ghcr.io/jlgore/shart.linux:main",
+2025-08-31T15:55:20.4790247Z         "ghcr.io/jlgore/shart.linux:latest",
+2025-08-31T15:55:20.4790704Z         "ghcr.io/jlgore/shart.linux:sha-1ecd32d"
+2025-08-31T15:55:20.4791065Z       ],
+2025-08-31T15:55:20.4791215Z       "args": {
+2025-08-31T15:55:20.4791446Z         "DOCKER_META_IMAGES": "ghcr.io/jlgore/shart.linux",
+2025-08-31T15:55:20.4791725Z         "DOCKER_META_VERSION": "main"
+2025-08-31T15:55:20.4791944Z       }
+2025-08-31T15:55:20.4792107Z     }
+2025-08-31T15:55:20.4792495Z   }
+2025-08-31T15:55:20.4792637Z }
+2025-08-31T15:55:20.4792941Z ##[endgroup]
+2025-08-31T15:55:20.4793248Z ##[group]Bake file definition (labels)
+2025-08-31T15:55:20.4793461Z {
+2025-08-31T15:55:20.4793602Z   "target": {
+2025-08-31T15:55:20.4793778Z     "docker-metadata-action": {
+2025-08-31T15:55:20.4793984Z       "labels": {
+2025-08-31T15:55:20.4794233Z         "org.opencontainers.image.created": "2025-08-31T15:55:20.458Z",
+2025-08-31T15:55:20.4794653Z         "org.opencontainers.image.description": "building my own shitty distro!",
+2025-08-31T15:55:20.4795030Z         "org.opencontainers.image.licenses": "",
+2025-08-31T15:55:20.4795404Z         "org.opencontainers.image.revision": "1ecd32d042dccd6632f3ab7ca3d530401d3e6c60",
+2025-08-31T15:55:20.4796111Z         "org.opencontainers.image.source": "https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4796496Z         "org.opencontainers.image.title": "shart.linux",
+2025-08-31T15:55:20.4796858Z         "org.opencontainers.image.url": "https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4797225Z         "org.opencontainers.image.version": "main"
+2025-08-31T15:55:20.4797461Z       }
+2025-08-31T15:55:20.4797601Z     }
+2025-08-31T15:55:20.4797735Z   }
+2025-08-31T15:55:20.4797871Z }
+2025-08-31T15:55:20.4798139Z ##[endgroup]
+2025-08-31T15:55:20.4798428Z ##[group]Bake file definition (annotations)
+2025-08-31T15:55:20.4798652Z {
+2025-08-31T15:55:20.4798788Z   "target": {
+2025-08-31T15:55:20.4798964Z     "docker-metadata-action": {
+2025-08-31T15:55:20.4799174Z       "annotations": [
+2025-08-31T15:55:20.4799448Z         "manifest:org.opencontainers.image.created=2025-08-31T15:55:20.458Z",
+2025-08-31T15:55:20.4799901Z         "manifest:org.opencontainers.image.description=building my own shitty distro!",
+2025-08-31T15:55:20.4800301Z         "manifest:org.opencontainers.image.licenses=",
+2025-08-31T15:55:20.4800714Z         "manifest:org.opencontainers.image.revision=1ecd32d042dccd6632f3ab7ca3d530401d3e6c60",
+2025-08-31T15:55:20.4801233Z         "manifest:org.opencontainers.image.source=https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4801659Z         "manifest:org.opencontainers.image.title=shart.linux",
+2025-08-31T15:55:20.4802060Z         "manifest:org.opencontainers.image.url=https://github.com/jlgore/shart.linux",
+2025-08-31T15:55:20.4802701Z         "manifest:org.opencontainers.image.version=main"
+2025-08-31T15:55:20.4802952Z       ]
+2025-08-31T15:55:20.4803088Z     }
+2025-08-31T15:55:20.4803232Z   }
+2025-08-31T15:55:20.4803363Z }
+2025-08-31T15:55:20.4803632Z ##[endgroup]
